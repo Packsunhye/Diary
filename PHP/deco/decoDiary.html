@@ -1,0 +1,174 @@
+<?php 
+    include "../../connect/connect.php";
+    include "../../connect/session.php";
+    
+    // echo "<pre>";
+    // var_dump($_SESSION);
+    // echo "</pre>";
+?>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다이어리 꾸미기</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/board.css">
+</head>
+<style>
+        .swiper {
+        width: 600px;
+        height: 300px;
+    }
+        .swiper {
+        width: 240px;
+        height: 320px;
+        box-shadow: 0px 40px 70px -20px #28185b91;
+      }
+
+      .swiper-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 18px;
+        font-size: 22px;
+        font-weight: bold;
+        color: #fff;
+      }
+      .swiper-slide:nth-child(even){
+        background-color: #632bbf;
+        border: 1px solid #000;
+      }
+      .swiper-slide:nth-child(odd){
+        background-color: #fcfcfe;
+        border: 1px solid #632bbf;
+      }
+      .swiper-cards{
+        border-radius: 50px !important;
+      }
+
+      /* .swiper-slide:nth-child(1n) {
+        background-color: rgb(206, 17, 17);
+      }
+
+      .swiper-slide:nth-child(2n) {
+        background-color: rgb(0, 140, 255);
+      }
+
+      .swiper-slide:nth-child(3n) {
+        background-color: rgb(10, 184, 111);
+      }
+
+      .swiper-slide:nth-child(4n) {
+        background-color: rgb(211, 122, 7);
+      }
+
+      .swiper-slide:nth-child(5n) {
+        background-color: rgb(118, 163, 12);
+      }
+
+      .swiper-slide:nth-child(6n) {
+        background-color: rgb(180, 10, 47);
+      }
+
+      .swiper-slide:nth-child(7n) {
+        background-color: rgb(35, 99, 19);
+      }
+
+      .swiper-slide:nth-child(8n) {
+        background-color: rgb(0, 68, 255);
+      }
+
+      .swiper-slide:nth-child(9n) {
+        background-color: rgb(218, 12, 218);
+      }
+
+      .swiper-slide:nth-child(10n) {
+        background-color: rgb(54, 94, 77);
+      } */
+</style>
+<body>
+    <div style="display:none" class="scroll">
+        <p>아래로 스크롤 해주세요.</p>
+        <img src="../../assets/img/site_intro_scroll.png" alt="">
+    </div>
+    <div class="wrap">
+        <div class="site">
+            <?php include "../include/header.php" ?>
+            <div class="deco__diary">
+                <div class="board">
+                    <div class="board_info">
+                        <img src="../../assets/img/site_main_notice.png" class="header_icon_main" alt="">
+                        <img src="../../assets/img/site_main_notice_heart.png" class="header_icon_01" alt="">
+                        <img src="../../assets/img/site_main_notice_heart.png" class="header_icon_02" alt="">
+                        <img src="../../assets/img/site_main_notice_heart.png" class="header_icon_03" alt="">
+                        <img src="../../assets/img/site_main_notice_heart.png" class="header_icon_04" alt="">
+                        <img src="../../assets/img/site_main_notice_heart.png" class="header_icon_05" alt="">
+                        
+                        <h2>NOTICE</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="diary__inner">
+                <div class="color__section">
+                    <div class="book">
+                        이미지
+                    </div>
+                    <h3>좋아하는 색상을 골라주세요 :3</h3>
+                    <form action="bookOpen.php" name="bookOpen" method="post" enctype="multipart/form-data">
+                    <fieldset>
+                        <legend>블로그 게시글 작성 영역</legend>
+                        <div>
+                            <label for="color">카테고리</label>
+                            <select name="color" id="color">
+                                <option value="red">레드</option>
+                                <option value="blue">블루</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="testImage">파일</label>
+                            <input type="file" name="testImage" id="testImage" accept=".jpg, .jpeg, .png, .gif" placeholder="jpg, gif, png 파일만 넣어주세요">
+                        </div>
+                        <button type="submit" value="저장하기">저장하기</button>
+                    </fieldset>
+                    <!-- Slider main container -->
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                          <div class="swiper-slide">Slide 1</div>
+                          <div class="swiper-slide">Slide 2</div>
+                          <div class="swiper-slide">Slide 3</div>
+                          <div class="swiper-slide">Slide 4</div>
+                          <div class="swiper-slide">Slide 5</div>
+                          <div class="swiper-slide">Slide 6</div>
+                          <div class="swiper-slide">Slide 7</div>
+                          <div class="swiper-slide">Slide 8</div>
+                          <div class="swiper-slide">Slide 9</div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <?php include "../include/footer.php" ?>
+    </div>
+</body>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    effect: "cards",
+    grabCursor: true,
+  });
+</script>
+
+<script src="../../assets/javascript/board.js"></script>
+<!-- <script src="../../assets/javascript/search.js"></script> -->
+<script src="../../assets/javascript/common.js"></script>
+</html>
